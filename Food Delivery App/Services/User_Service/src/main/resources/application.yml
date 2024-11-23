@@ -1,0 +1,29 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://admin:root@localhost:27017/Food_Delivery_App?authSource=admin  # Using connection URI format
+  application:
+    name: USER-SERVICE
+
+logging:
+  level:
+    org:
+      springframework:
+        data:
+          mongodb: DEBUG # Enable detailed logging for MongoDB interactions
+server:
+  port: 8086
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/  # URL of the Eureka Server
+    fetch-registry: true                          # Fetch the registry from the Eureka server
+    register-with-eureka: true                    # Register this application with Eureka server
+  instance:
+    instance-id: ${spring.application.name}:${server.port} # Unique instance ID
+    prefer-ip-address: true                        # Use IP address instead of hostname
+
+        # Optional: additional logging configuration
+  level:
+    com.netflix.eureka: DEBUG
